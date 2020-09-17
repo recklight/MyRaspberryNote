@@ -15,7 +15,8 @@ Raspberry Environment Build
 * [Git](#Git) 
 * [Chinese_Input](#Chinese_Input) 
 * [LCD3.5](#LCD3.5) 
-* [OpenCV3.4](#OpenCV3.4) 
+* [OpenCV3.4](#OpenCV3.4)
+* [PyTorch](#PyTorch)
 
 Raspberry安裝
 ------
@@ -202,4 +203,43 @@ OpenCV3.4
 >The latest version of openCV doesn't work on RPi
 ```
 sudo pip3 install opencv-python==3.4.6.27
+```
+
+PyTorch
+------
+#### Install dependencies 
+```
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools \
+libavutil-dev libavcodec-dev libavformat-dev libswscale-dev
+```
+#### Install PyTorch and PyTorch Vision using the pre-compiled Python wheel files
+> Download wheel files from https://github.com/sungjuGit/Pytorch-and-Vision-for-Raspberry-Pi-4B 
+```
+sudo pip install replace_with_name_for_pytorch_wheel.whl
+sudo pip install replace_with_name_for_pytorchvision_wheel.whl
+```
+#### Or, get the latest version by building PyTorch from the source
+```
+mkdir pytorch_install && cd pytorch_install
+git clone --recursive https://github.com/pytorch/pytorch
+cd pytorch && git submodule update --remote third_party/protobuf
+export NO_CUDA=1
+export NO_DISTRIBUTED=1
+export NO_MKLDNN=1 
+export NO_NNPACK=1
+export NO_QNNPACK=1
+python3 setup.py build
+sudo -E python setup.py install
+cd .. && mkdir pytorch_vision_install && cd pytorch_vision_install
+git clone --recursive https://github.com/pytorch/vision
+cd vision
+sudo -E python setup.py install
+```
+#### Verification
+```
+python
+import torch
+torch.__version__
 ```

@@ -213,6 +213,7 @@ sudo apt-get update
 sudo apt-get dist-upgrade
 sudo apt install libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools \
 libavutil-dev libavcodec-dev libavformat-dev libswscale-dev
+sudo pip install typing_extensions
 ```
 #### Install PyTorch and PyTorch Vision using the pre-compiled Python wheel files
 > Download wheel files from https://github.com/sungjuGit/Pytorch-and-Vision-for-Raspberry-Pi-4B 
